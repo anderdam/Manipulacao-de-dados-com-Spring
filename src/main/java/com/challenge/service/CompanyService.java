@@ -1,29 +1,41 @@
 package com.challenge.service;
 
 import com.challenge.entity.Company;
+import com.challenge.repository.CompanyRepository;
 import com.challenge.service.interfaces.CompanyServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CompanyService implements CompanyServiceInterface {
+
+    private final CompanyRepository repository;
+
+    @Autowired
+    public CompanyService(CompanyRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public Optional<Company> findById(Long id) {
-        return Optional.empty();
+        return repository.findById(id);
     }
 
     @Override
     public List<Company> findByAccelerationId(Long accelerationId) {
-        return null;
+        return repository.findByAccelerationId(accelerationId);
     }
 
     @Override
     public List<Company> findByUserId(Long userId) {
-        return null;
+        return repository.findByUserId(userId);
     }
 
     @Override
     public Company save(Company object) {
-        return null;
+        return repository.save(object);
     }
 }

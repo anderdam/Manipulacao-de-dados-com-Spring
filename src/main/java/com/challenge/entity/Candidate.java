@@ -11,14 +11,13 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Candidate {
+public class Candidate implements Serializable {
 
 	@EmbeddedId
 	private CandidateId id;
@@ -30,4 +29,35 @@ public class Candidate {
 	@CreatedDate
 	private LocalDateTime createdAt;
 
+	public Candidate() {}
+
+	public Candidate(CandidateId id, @NotNull Integer status, LocalDateTime createdAt) {
+		this.id = id;
+		this.status = status;
+		this.createdAt = createdAt;
+	}
+
+	public CandidateId getId() {
+		return id;
+	}
+
+	public void setId(CandidateId id) {
+		this.id = id;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
 }
