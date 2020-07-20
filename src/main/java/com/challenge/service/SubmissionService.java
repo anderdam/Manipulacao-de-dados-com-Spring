@@ -5,11 +5,13 @@ import com.challenge.repository.SubmissionRepository;
 import com.challenge.service.interfaces.SubmissionServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
+@Transactional
 public class SubmissionService implements SubmissionServiceInterface {
 
     private final SubmissionRepository repository;

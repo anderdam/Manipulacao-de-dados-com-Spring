@@ -5,7 +5,6 @@ import com.challenge.repository.AccelerationRepository;
 import com.challenge.service.interfaces.AccelerationServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,29 +12,25 @@ import java.util.Optional;
 @Service
 public class AccelerationService implements AccelerationServiceInterface {
 
-    private final AccelerationRepository accelerationRepository;
+    private final AccelerationRepository repository;
 
     @Autowired
-    public AccelerationService(AccelerationRepository accelerationRepository) {
-        this.accelerationRepository = accelerationRepository;
+    public AccelerationService(AccelerationRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Optional<Acceleration> findById(Long id) {
-        return accelerationRepository.findById(id);
+        return repository.findById(id);
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Acceleration> findByCompanyId(Long companyId) {
-        return accelerationRepository.findByCompanyId(companyId);
+        return repository.findByCompanyId(companyId);
     }
 
     @Override
-    @Transactional
     public Acceleration save(Acceleration acceleration) {
-        return accelerationRepository.save(acceleration);
+        return repository.save(acceleration);
     }
-
 }
